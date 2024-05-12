@@ -110,15 +110,15 @@ func scanDirect(c *queuescanner.Ctx, p *queuescanner.QueueScannerScanParams) {
 
 	for _, server := range req.Servers {
         if strings.ToLower(hServer) == strings.ToLower(server) {
-		s = colorG1.Sprint(s)
-		res := &scanDirectResponse{
-			Request:    req,
-			NetIPList:  netIPList,
-			StatusCode: httpRes.StatusCode,
-			Server:     httpRes.Header.Get("Server"),
-			Location:   httpRes.Header.Get("Location"),
-		}
-		c.ScanSuccess(res, nil)
+			s = colorG1.Sprint(s)
+			res := &scanDirectResponse{
+				Request:    req,
+				NetIPList:  netIPList,
+				StatusCode: httpRes.StatusCode,
+				Server:     httpRes.Header.Get("Server"),
+				Location:   httpRes.Header.Get("Location"),
+			}
+			c.ScanSuccess(res, nil)
 	    }
 	}
 	
