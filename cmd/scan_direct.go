@@ -108,7 +108,8 @@ func scanDirect(c *queuescanner.Ctx, p *queuescanner.QueueScannerScanParams) {
 		hRedirect,
 	)
 
-	if hServer == req.Servers[0] {
+	for _, server := range req.Servers {
+        if strings.ToLower(hServer) == strings.ToLower(server) {
 		s = colorG1.Sprint(s)
 		res := &scanDirectResponse{
 			Request:    req,
