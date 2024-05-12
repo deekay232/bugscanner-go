@@ -85,6 +85,8 @@ func scanDirect(c *queuescanner.Ctx, p *queuescanner.QueueScannerScanParams) {
 	if err != nil {
 		return
 	}
+	
+	httpReq = httpReq.WithContext(ctxTimeout)
 
 	httpRes, err := httpClient.Do(httpReq)
 	if err != nil {
@@ -141,11 +143,12 @@ func scanDirectRun(cmd *cobra.Command, args []string) {
 
 	queueScanner := queuescanner.NewQueueScanner(scanFlagThreads, scanDirect)
 	for domain := range domainList {
+	    servers := []string{"cloudflare", "cloudfront", "varnish"}
 		queueScanner.Add(&queuescanner.QueueScannerScanParams{
 			Name: domain,
 			Data: &scanDirectRequest{
 				Domain: domain,
-				Server: "cloudflare",
+				Servers: servers,
 			},
 		})
 	}
