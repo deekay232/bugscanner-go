@@ -40,8 +40,8 @@ func init() {
 }
 
 type scanDirectRequest struct {
-	Domain string
-	Server string
+	Domain  string
+	Servers []string
 }
 
 type scanDirectResponse struct {
@@ -108,7 +108,7 @@ func scanDirect(c *queuescanner.Ctx, p *queuescanner.QueueScannerScanParams) {
 		hRedirect,
 	)
 
-	if hServer == req.Server {
+	if hServer == req.Servers[0] {
 		s = colorG1.Sprint(s)
 		res := &scanDirectResponse{
 			Request:    req,
