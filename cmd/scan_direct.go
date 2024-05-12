@@ -119,8 +119,9 @@ func scanDirect(c *queuescanner.Ctx, p *queuescanner.QueueScannerScanParams) {
 			Location:   httpRes.Header.Get("Location"),
 		}
 		c.ScanSuccess(res, nil)
+	    }
 	}
-
+	
 	c.Log(s)
 }
 
